@@ -1,0 +1,10 @@
+{
+    "name":  "@ts4go/cli",
+    "version":  "0.1.0",
+    "private":  true,
+    "dependencies":  {
+                         "commander":  "latest",
+                         "@ts4go/transformer":  "workspace:*",
+                         "@ts4go/generator-go":  "workspace:*"
+                     }
+}

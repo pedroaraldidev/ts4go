@@ -1,0 +1,8 @@
+{
+    "name":  "@ts4go/shared",
+    "version":  "0.1.0",
+    "private":  true,
+    "dependencies":  {
+
+                     }
+}

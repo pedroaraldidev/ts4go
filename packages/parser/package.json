@@ -1,0 +1,10 @@
+{
+    "name":  "@ts4go/parser",
+    "version":  "0.1.0",
+    "private":  true,
+    "dependencies":  {
+                         "php-parser":  "latest",
+                         "ts-morph":  "latest",
+                         "@ts4go/ir":  "workspace:*"
+                     }
+}

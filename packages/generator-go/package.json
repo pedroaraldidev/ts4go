@@ -1,0 +1,9 @@
+{
+    "name":  "@ts4go/generator-go",
+    "version":  "0.1.0",
+    "private":  true,
+    "dependencies":  {
+                         "@ts4go/ir":  "workspace:*",
+                         "handlebars":  "latest"
+                     }
+}

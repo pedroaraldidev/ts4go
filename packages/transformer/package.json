@@ -1,0 +1,9 @@
+{
+    "name":  "@ts4go/transformer",
+    "version":  "0.1.0",
+    "private":  true,
+    "dependencies":  {
+                         "@ts4go/ir":  "workspace:*",
+                         "ts-morph":  "latest"
+                     }
+}
