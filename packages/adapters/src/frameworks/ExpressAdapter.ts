@@ -1,5 +1,5 @@
 import { CallExpression, SyntaxKind, Node, ArrowFunction, FunctionExpression } from 'ts-morph';
-import { IRRoute, IRStatement } from '../../ir/src';
+import { IRRoute, IRStatement } from '../../../ir/src';
 import { IAdapter, AdapterRegistry } from '../../../shared/src';
 
 export class ExpressAdapter implements IAdapter<CallExpression, IRRoute> {

@@ -1,5 +1,5 @@
 import { ClassDeclaration, SyntaxKind, Node } from 'ts-morph';
-import { IRController, IRRoute } from '../../ir/src';
+import { IRController, IRRoute } from '../../../ir/src';
 import { IAdapter } from '../../../shared/src';
 
 export class VanillaHttpAdapter implements IAdapter<ClassDeclaration, IRController> {

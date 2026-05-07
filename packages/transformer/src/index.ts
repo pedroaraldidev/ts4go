@@ -1,4 +1,4 @@
-import { SourceFile, ClassDeclaration, MethodDeclaration, InterfaceDeclaration, ParameterDeclaration, SyntaxKind } from 'ts-morph';
+import { SourceFile, Node, ClassDeclaration, MethodDeclaration, InterfaceDeclaration, ParameterDeclaration, SyntaxKind } from 'ts-morph';
 import { IRProject, IRController, IRRoute, IRDTO, IRParameter, IRType, IRStatement } from '../../ir/src';
 import { AdapterRegistry } from '../../shared/src';
 

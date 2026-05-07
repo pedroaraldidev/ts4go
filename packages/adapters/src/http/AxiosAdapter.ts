@@ -1,6 +1,6 @@
 import { CallExpression, SyntaxKind, Node } from 'ts-morph';
-import { IRHttpCall } from '../../ir/src';
-import { IAdapter } from '../../shared/src';
+import { IRHttpCall } from '../../../ir/src';
+import { IAdapter } from '../../../shared/src';
 
 export class AxiosAdapter implements IAdapter<CallExpression, IRHttpCall> {
     name = 'Axios';

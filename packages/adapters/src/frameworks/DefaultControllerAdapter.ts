@@ -1,6 +1,6 @@
 import { ClassDeclaration, SyntaxKind, Node } from 'ts-morph';
-import { IRController } from '../../ir/src';
-import { IAdapter } from '../../shared/src';
+import { IRController } from '../../../ir/src';
+import { IAdapter } from '../../../shared/src';
 
 export class DefaultControllerAdapter implements IAdapter<ClassDeclaration, IRController> {
     name = 'DefaultController';

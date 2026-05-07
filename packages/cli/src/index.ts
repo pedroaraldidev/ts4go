@@ -27,23 +27,31 @@ program.command('build')
     const transformer = new TSTransformer();
     const ir = transformer.transform(sourceFile);
 
-    console.log(`[Generator] Generating Go code...`);
+    console.log(`[Generator] Generating Go project...`);
     const generator = new GoGenerator();
-    const goCode = generator.generate(ir);
+    const files = generator.generate(ir);
 
     const outDir = path.resolve(options.output);
     if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
     
-    const outPath = path.join(outDir, 'main.go');
-    fs.writeFileSync(outPath, goCode);
+    for (const [filename, content] of files.entries()) {
+        const filePath = path.join(outDir, filename);
+        const fileDir = path.dirname(filePath);
+        if (!fs.existsSync(fileDir)) fs.mkdirSync(fileDir, { recursive: true });
+        fs.writeFileSync(filePath, content);
+        console.log(`  -> Created ${filename}`);
+    }
+
+    const outPath = path.join(outDir, 'cmd', 'main.go');
 
     console.log(`[Formatter] Formatting with gofmt...`);
     try {
         const { execSync } = require('child_process');
-        execSync(`gofmt -w ${outPath}`);
+        const goBinDir = 'C:\\Program Files\\Go\\bin';
+        execSync(`"${path.join(goBinDir, 'gofmt.exe')}" -w ${outPath}`);
         
         console.log(`[Go] Initializing module and tidying...`);
-        const goBin = 'C:\\Program Files\\Go\\bin\\go.exe';
+        const goBin = path.join(goBinDir, 'go.exe');
         if (!fs.existsSync(path.join(outDir, 'go.mod'))) {
             execSync(`"${goBin}" mod init ts4go-api`, { cwd: outDir });
         }

@@ -1,6 +1,6 @@
 import { PropertyAccessExpression, SyntaxKind, Node } from 'ts-morph';
-import { IREnvVar } from '../../ir/src';
-import { IAdapter } from '../../shared/src';
+import { IREnvVar } from '../../../ir/src';
+import { IAdapter } from '../../../shared/src';
 
 export class EnvAdapter implements IAdapter<PropertyAccessExpression, IREnvVar> {
     name = 'Env';

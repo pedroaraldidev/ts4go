@@ -1,5 +1,5 @@
 import { Node } from 'ts-morph';
-import { IRNode } from '@ts2go/ir';
+import { IRNode } from '../../ir/src';
 
 export interface IAdapter<T = Node, R = IRNode> {
     name: string;
