@@ -19,13 +19,25 @@ program.command('build')
   .argument('<file>', 'Source file to compile')
   .option('-o, --output <dir>', 'Output directory', './output')
   .action((file, options) => {
-    console.log(`[Parser] Reading ${file}...`);
+    console.log(`[Parser] Reading project files...`);
     const project = new Project();
-    const sourceFile = project.addSourceFileAtPath(file);
+    
+    // Add the specific file and all files in its parent 'src' directory (if it exists)
+    project.addSourceFileAtPath(file);
+    
+    let srcDir = path.dirname(file);
+    while (srcDir.length > 3 && path.basename(srcDir) !== 'src') {
+        srcDir = path.dirname(srcDir);
+    }
+    
+    if (path.basename(srcDir) === 'src') {
+        project.addSourceFilesAtPaths(path.join(srcDir, '**/*.ts'));
+    }
 
-    console.log(`[Transform] Converting TS AST to IR...`);
+    const sourceFiles = project.getSourceFiles();
+    console.log(`[Transform] Converting ${sourceFiles.length} files to IR...`);
     const transformer = new TSTransformer();
-    const ir = transformer.transform(sourceFile);
+    const ir = transformer.transform(sourceFiles);
 
     console.log(`[Generator] Generating Go project...`);
     const generator = new GoGenerator();

@@ -1,6 +1,8 @@
 export type IRNodeKind = 
   | 'Project'
   | 'Controller'
+  | 'Class'
+  | 'Method'
   | 'Route'
   | 'DTO'
   | 'Field'
@@ -9,6 +11,7 @@ export type IRNodeKind =
   | 'HttpCall'
   | 'Return'
   | 'Assignment'
+  | 'Raw'
   | 'EnvVar';
 
 export interface IRNode {
@@ -18,6 +21,7 @@ export interface IRNode {
 export interface IRProject extends IRNode {
   kind: 'Project';
   controllers: IRController[];
+  classes: IRClass[];
   dtos: IRDTO[];
 }
 
@@ -26,6 +30,19 @@ export interface IRController extends IRNode {
   name: string;
   basePath: string;
   routes: IRRoute[];
+}
+
+export interface IRClass extends IRNode {
+  kind: 'Class';
+  name: string;
+  methods: IRMethod[];
+}
+
+export interface IRMethod extends IRNode {
+  kind: 'Method';
+  name: string;
+  parameters: IRParameter[];
+  body: IRStatement[];
 }
 
 export interface IRRoute extends IRNode {
@@ -42,7 +59,12 @@ export type IRStatement = IRHttpCall | IRReturn | IRAssignment | IREnvVar;
 export interface IRAssignment extends IRNode {
   kind: 'Assignment';
   variableName: string;
-  expression: IRNode;
+  expression: any;
+}
+
+export interface IRRaw extends IRNode {
+  kind: 'Raw';
+  value: string;
 }
 
 export interface IREnvVar extends IRNode {
